@@ -15,7 +15,7 @@ namespace syno.DownloadStation
     /// <summary>
     /// Provides total download/upload statistics.
     /// </summary>
-    class Statistic
+    public class Statistic
     {
     }
 }

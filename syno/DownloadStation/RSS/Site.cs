@@ -16,7 +16,7 @@ namespace syno.DownloadStation.RSS
     /// Provides RSS site listing. 
     /// Refreshes RSS site.
     /// </summary>
-    class Site
+    public class Site
     {
     }
 }

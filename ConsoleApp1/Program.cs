@@ -39,16 +39,9 @@ namespace Test
             Console.WriteLine($"Login: {login.sid}");
             
 
-            //dl info
-            //syno.DownloadStation.Info.SetConfig(server, new syno.DownloadStation.DownloadStationConfig() {bt_max_download=100});
             var xx = syno.DownloadStation.Info.GetConfig(server);
 
-            syno.DownloadStation.ConfigObject myClass = new syno.DownloadStation.ConfigObject() {
-                bt_max_download = 0
-            };
-            Console.WriteLine("---");
-            syno.DownloadStation.Info.SetConfig(server, myClass);
-            Console.WriteLine("---");
+            var xxx = syno.DownloadStation.Tasks.List(server);
             
             var logout = syno.API.Auth.GetLogout(server);
 

@@ -15,7 +15,7 @@ namespace syno.DownloadStation.RSS
     /// <summary>
     /// Provides RSS feed listing.
     /// </summary>
-    class Feed
+    public class Feed
     {
 
     }
