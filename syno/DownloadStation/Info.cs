@@ -50,6 +50,10 @@ namespace syno.DownloadStation
             return results;
         }
 
+        /// <summary>
+        /// Provides Download Station settings 
+        /// </summary>
+        /// <returns></returns>
         public static ConfigObject GetConfig(Init server)
         {
 
@@ -76,28 +80,25 @@ namespace syno.DownloadStation
             return results;
         }
 
-        // todo: Trovare un modo per passare singolarmente tutti i parametri
-        public static void SetConfig(Init server, ConfigObject conf)
+        /// <summary>
+        /// Set Download Station settings 
+        /// </summary>
+        /// <param name="conf">It represents the parameters to be set, if null will not be considered</param>
+        public static bool SetConfig(Init server, ConfigObject conf)
         { 
             Uri fullPath = new UriBuilder(server.BaseAddress)
             {
                 Path = BasePath,
-                Query = "api=SYNO.DownloadStation.Info&version=1&method=getconfig",
+                Query = "api=SYNO.DownloadStation.Info&version=1&method=setserverconfig" + syno.Init.GetParameters<ConfigObject>(conf),
             }.Uri;
 
             Console.WriteLine(fullPath);
 
             string json = Init.Richiesta(fullPath).Result;
-            ConfigObject results;
 
-            try
-            {
-                results = JsonConvert.DeserializeObject<ConfigObject>(JObject.Parse(json)["data"].ToString());
-            }
-            catch
-            {
-                throw syno.SynoException.FromJson(json);
-            }
+            var results = JsonConvert.DeserializeObject<Dictionary<string, string>>(JObject.Parse(json).ToString());
+
+            return bool.Parse(results.Values.First());
         }
     }
 
@@ -122,39 +123,39 @@ namespace syno.DownloadStation
         /// <summary>
         /// Max BT download speed in KB/s (“0” means unlimited) 
         /// </summary>
-        public int bt_max_download { get; set; }
+        public int? bt_max_download { get; set; }
         /// <summary>
         /// Max BT upload speed in KB/s (“0” means unlimited)
         /// </summary>
-        public int bt_max_upload { get; set; }
+        public int? bt_max_upload { get; set; }
         /// <summary>
         /// Max eMule download speed in KB/s (“0” means unlimited)
         /// </summary>
-        public int emule_max_download { get; set; }
+        public int? emule_max_download { get; set; }
         /// <summary>
         /// Max eMule upload speed in KB/s (“0” means unlimited)
         /// </summary>
-        public int emule_max_upload { get; set; }
+        public int? emule_max_upload { get; set; }
         /// <summary>
         /// Max NZB download speed in KB/s (“0” means unlimited)
         /// </summary>
-        public int nzb_max_download { get; set; }
+        public int? nzb_max_download { get; set; }
         /// <summary>
         /// Max HTTP download speed in KB/s (“0” means unlimited). For more info, please see Limitations
         /// </summary>
-        public int http_max_download { get; set; }
+        public int? http_max_download { get; set; }
         /// <summary>
         /// Max FTP download speed in KB/s (“0” means unlimited). For more info, please see Limitations.
         /// </summary>
-        public int ftp_max_download { get; set; }
+        public int? ftp_max_download { get; set; }
         /// <summary>
         /// If eMule service is enabled
         /// </summary>
-        public bool emule_enabled { get; set; }
+        public bool? emule_enabled { get; set; }
         /// <summary>
         ///  If Auto unzip service is enabled for users except admin or administrators group
         /// </summary>
-        public bool unzip_service_enabled { get; set; }
+        public bool? unzip_service_enabled { get; set; }
         /// <summary>
         ///  Default destination
         /// </summary>
@@ -163,7 +164,5 @@ namespace syno.DownloadStation
         /// Emule default destination
         /// </summary>
         public string emule_default_destination { get; set; }
-
-        public string prova { get; set; }
     }
 }

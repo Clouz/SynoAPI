@@ -14,6 +14,7 @@ using Newtonsoft.Json.Bson;
 using Newtonsoft.Json.Converters;
 
 using syno;
+using System.Reflection;
 
 namespace Test
 {
@@ -41,11 +42,14 @@ namespace Test
             //dl info
             //syno.DownloadStation.Info.SetConfig(server, new syno.DownloadStation.DownloadStationConfig() {bt_max_download=100});
             var xx = syno.DownloadStation.Info.GetConfig(server);
-            foreach (var item in xx.GetType().GetProperties())
-            {
-                Console.WriteLine(item.Name + " : ");
-            }
 
+            syno.DownloadStation.ConfigObject myClass = new syno.DownloadStation.ConfigObject() {
+                bt_max_download = 0
+            };
+            Console.WriteLine("---");
+            syno.DownloadStation.Info.SetConfig(server, myClass);
+            Console.WriteLine("---");
+            
             var logout = syno.API.Auth.GetLogout(server);
 
 

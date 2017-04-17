@@ -12,6 +12,7 @@ using Newtonsoft.Json.Schema;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Bson;
 using Newtonsoft.Json.Converters;
+using System.Reflection;
 
 
 namespace syno
@@ -50,6 +51,27 @@ namespace syno
 
             return json;
         }
+
+        public static string GetParameters<T>(T Class)
+        {
+            Type ClassType = Class.GetType();
+            PropertyInfo[] properties = ClassType.GetProperties();
+
+            string result = "";
+
+            foreach (PropertyInfo property in properties)
+            {
+                string name = property.Name;
+                string value = property.GetValue(Class, null)?.ToString();
+
+                if (value!=null)
+                    result += $"&{name}={value}";
+                //Console.WriteLine($"Prop name: {property.Name} ; Value: {property.GetValue(Class, null)}");
+            }
+            return result;
+        }
+
+
     }
 
 
@@ -95,6 +117,5 @@ namespace syno
             errorObject results = JsonConvert.DeserializeObject<errorObject>(JObject.Parse(json)["error"].ToString());
             return new SynoException($"{results.code} : {errorDescription(results.code)}");
         }
-
     }
 }
