@@ -2,7 +2,7 @@
 Synology Download Station and File Station API for C#
 
 ## Status
-|Api Name|DESCRIPTION|Status |
+|API NAME|DESCRIPTION|STATUS|
 |---|---|:---:|
 |SYNO.API.Info|Provides available API info|DONE|
 |SYNO.API.Auth|Performs session login and logout|DONE|
