@@ -9,7 +9,7 @@ Synology Download Station and File Station API for C#
 |**Download Station API**|
 |SYNO.DownloadStation.Info|Provides Download Station info and settings.Sets Download Station settings|DONE|
 |SYNO.DownloadStation.Schedule|Provides advanced schedule settings. Sets advanced schedule settings|DONE|
-|SYNO.DownloadStation.Task|Provides task listing and detailed task information.Performs task actions: create, delete, resume, pause|Working|
+|SYNO.DownloadStation.Task|Provides task listing and detailed task information.Performs task actions: create, delete, resume, pause|WORKING|
 |SYNO.DownloadStation.Statistic|Provides total download/upload statistics||
 |SYNO.DownloadStation.RSS.Site|Provides RSS site listing. Refreshes RSS site||
 |SYNO.DownloadStation.RSS.Feed|Provides RSS feed listing||
