@@ -41,12 +41,25 @@ namespace Test
 
             var xx = syno.DownloadStation.Info.GetConfig(server);
 
-            var xxx = syno.DownloadStation.Tasks.List(server);
+            var xxx = syno.DownloadStation.Tasks.Create(server, file:"http://releases.ubuntu.com/17.04/ubuntu-17.04-server-amd64.iso.torrent?_ga=1.142332340.741759227.1492636896", destination : @"\Download");
+
+            Console.WriteLine(xxx);
             
             var logout = syno.API.Auth.GetLogout(server);
 
 
             Console.ReadLine();
+        }
+
+        public static void stampa(syno.DownloadStation.ListObjects lista)
+        {
+            Console.WriteLine($"Offset: {lista.offset}");
+            Console.WriteLine($"Total: {lista.total}");
+
+            foreach (var item in lista.tasks)
+            {
+                Console.WriteLine($"\t{item.id}:{item.title}");
+            }
         }
     }
 }
