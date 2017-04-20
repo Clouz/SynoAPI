@@ -127,15 +127,14 @@ namespace syno.DownloadStation
         /// <returns></returns>
         public static bool Create(Init server, string uri = "", string file = "", string unzip_password = "", string destination = "")
         {
-            // TODO: attualmente non funziona sistemare
             if (uri != "")
                 uri = $"&uri={uri}";
             if (file != "")
                 file = $"&file={file}";
             if (unzip_password != "")
-                unzip_password = $"&uri={unzip_password}";
+                unzip_password = $"&unzip_password={unzip_password}";
             if (destination != "")
-                destination = $"&uri={destination}";
+                destination = $"&destination={destination}";
 
             Uri fullPath = new UriBuilder(server.BaseAddress)
             {
@@ -155,7 +154,6 @@ namespace syno.DownloadStation
             }
             catch
             {
-                // TODO: Aggiungere errori alle eccezioni
                 throw SynoException.FromJson(json, SynoException.ExceptionType.DownloadStation_Task);
             }
 

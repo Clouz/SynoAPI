@@ -41,7 +41,7 @@ namespace Test
 
             var xx = syno.DownloadStation.Info.GetConfig(server);
 
-            var xxx = syno.DownloadStation.Tasks.Create(server, file:"http://releases.ubuntu.com/17.04/ubuntu-17.04-server-amd64.iso.torrent?_ga=1.142332340.741759227.1492636896", destination : @"\Download");
+            var xxx = syno.DownloadStation.Tasks.Create(server, uri :"http://releases.ubuntu.com/17.04/ubuntu-17.04-server-amd64.iso.torrent?_ga=1.142332340.741759227.1492636896", destination : "download");
 
             Console.WriteLine(xxx);
             
