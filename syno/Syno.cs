@@ -83,39 +83,66 @@ namespace syno
             public int code { get; set; }
         }
 
-        private static Dictionary<int, string> errorTable = new Dictionary<int, string>()
-            {
-                { 0, null },
-                { 100, "Unknown error" },
-                { 101, "Invalid parameter" },
-                { 102, "The requested API does not exist" },
-                { 103, "The requested method does not exist" },
-                { 104, "The requested version does not support the functionality" },
-                { 105, "The logged in session does not have permission" },
-                { 106, "Session timeout" },
-                { 107, "Session interrupted by duplicate login" },
-                { 400, "No such account or incorrect password "},
-                { 401, "Account disabled"},
-                { 402, "Permission denied"},
-                { 403, "2-step verification code required"},
-                { 404, "Failed to authenticate 2-step verification code"},
-            };
-
-        private static string errorDescription(int errorCode)
+        public enum ExceptionType
         {
-            string value;
-            errorTable.TryGetValue(errorCode, out value);
-            return value;
+            API_Auth,
+            API_Info,
+            DownloadStation_Info,
+            DownloadStation_Schedule,
+            DownloadStation_Statistic,
+            DownloadStation_Task,
         }
 
+        private static Dictionary<string, string> errorTable = new Dictionary<string, string>()
+            {
+                { "0", null },
+                { "100", "Unknown error" },
+                { "101", "Invalid parameter" },
+                { "102", "The requested API does not exist" },
+                { "103", "The requested method does not exist" },
+                { "104", "The requested version does not support the functionality" },
+                { "105", "The logged in session does not have permission" },
+                { "106", "Session timeout" },
+                { "107", "Session interrupted by duplicate login" },
+                { "API_Auth400", "No such account or incorrect password "},
+                { "API_Auth401", "Account disabled"},
+                { "API_Auth402", "Permission denied"},
+                { "API_Auth403", "2-step verification code required"},
+                { "API_Auth404", "Failed to authenticate 2-step verification code"},
+                { "DownloadStation_Task400", "File upload failed"},
+                { "DownloadStation_Task401", "Max number of tasks reached"},
+                { "DownloadStation_Task402", "Destination denied"},
+                { "DownloadStation_Task403", "Destination does not exist"},
+                { "DownloadStation_Task404", "Invalid task id"},
+                { "DownloadStation_Task405", "Invalid task action"},
+                { "DownloadStation_Task406", "No default destination"},
+                { "DownloadStation_Task407", "Set destination failed"},
+                { "DownloadStation_Task408", "File does not exist"},
+
+            };
+
+        private static string errorDescription(int errorCode, ExceptionType type)
+        {
+            string value;
+            string type_ErrorCode;
+
+            if (errorCode < 200)
+                type_ErrorCode = errorCode.ToString();
+            else
+                type_ErrorCode = $"{type.ToString()}{errorCode}";
+
+            errorTable.TryGetValue(type_ErrorCode, out value);
+            return value;
+        }
 
         public SynoException() : base() { }
         public SynoException(string message) : base(message) { }
         
-        public static SynoException FromJson(string json)
+        public static SynoException FromJson(string json, ExceptionType type)
         {
             errorObject results = JsonConvert.DeserializeObject<errorObject>(JObject.Parse(json)["error"].ToString());
-            return new SynoException($"{results.code} : {errorDescription(results.code)}");
+            return new SynoException($"{results.code} : {errorDescription(results.code, type)}");
         }
     }
+
 }

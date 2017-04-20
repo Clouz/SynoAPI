@@ -44,7 +44,7 @@ namespace syno.DownloadStation
             }
             catch
             {
-                throw syno.SynoException.FromJson(json);
+                throw syno.SynoException.FromJson(json, SynoException.ExceptionType.API_Info);
             }
 
             return results;
@@ -74,7 +74,7 @@ namespace syno.DownloadStation
             }
             catch
             {
-                throw syno.SynoException.FromJson(json);
+                throw syno.SynoException.FromJson(json, SynoException.ExceptionType.API_Info);
             }
 
             return results;

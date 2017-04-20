@@ -63,7 +63,7 @@ namespace syno.DownloadStation
             }
             catch
             {
-                throw syno.SynoException.FromJson(json);
+                throw syno.SynoException.FromJson(json, SynoException.ExceptionType.DownloadStation_Task);
             }
 
             return results;
@@ -111,7 +111,7 @@ namespace syno.DownloadStation
             }
             catch
             {
-                throw syno.SynoException.FromJson(json);
+                throw syno.SynoException.FromJson(json, SynoException.ExceptionType.DownloadStation_Task);
             }
 
             return results;
@@ -156,7 +156,7 @@ namespace syno.DownloadStation
             catch
             {
                 // TODO: Aggiungere errori alle eccezioni
-                throw SynoException.FromJson(json);
+                throw SynoException.FromJson(json, SynoException.ExceptionType.DownloadStation_Task);
             }
 
 

@@ -44,7 +44,7 @@ namespace syno.DownloadStation
             }
             catch
             {
-                throw syno.SynoException.FromJson(json);
+                throw syno.SynoException.FromJson(json, SynoException.ExceptionType.DownloadStation_Schedule);
             }
 
             return results;

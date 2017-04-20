@@ -54,7 +54,7 @@ namespace syno.API
             }
             catch
             {
-                throw SynoException.FromJson(json);
+                throw SynoException.FromJson(json, SynoException.ExceptionType.API_Auth);
             }
 
             return stato;
