@@ -15,7 +15,7 @@ Synology Download Station and File Station API for C#
 |SYNO.DownloadStation.RSS.Feed|Provides RSS feed listing||
 |SYNO.DownloadStation.BTSearch|Provides BitTorrent listing and search||
 |**File Station API**||
-|SYNO.FileStation.Info|Provide File Station info||
+|SYNO.FileStation.Info|Provide File Station info|DONE|
 |SYNO.FileStation.List|List all shared folders, enumerate files in a shared folder,and get detailed file information||
 |SYNO.FileStation.Search|Search files on given criteria||
 |SYNO.FileStation.VirtualFolder|List all mount point folders of virtual file system, ex: CIFS or ISO||
