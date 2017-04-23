@@ -54,6 +54,25 @@
     <Compile Include="DownloadStation\Schedule.cs" />
     <Compile Include="DownloadStation\Statistic.cs" />
     <Compile Include="DownloadStation\Task.cs" />
+    <Compile Include="FileStation\BackgroundTask.cs" />
+    <Compile Include="FileStation\CheckPermission.cs" />
+    <Compile Include="FileStation\Compress.cs" />
+    <Compile Include="FileStation\CopyMove.cs" />
+    <Compile Include="FileStation\CreateFolder.cs" />
+    <Compile Include="FileStation\Delete.cs" />
+    <Compile Include="FileStation\DirSize.cs" />
+    <Compile Include="FileStation\Download.cs" />
+    <Compile Include="FileStation\Extract.cs" />
+    <Compile Include="FileStation\Favorite.cs" />
+    <Compile Include="FileStation\Info.cs" />
+    <Compile Include="FileStation\List.cs" />
+    <Compile Include="FileStation\MD5.cs" />
+    <Compile Include="FileStation\Rename.cs" />
+    <Compile Include="FileStation\Search.cs" />
+    <Compile Include="FileStation\Sharing.cs" />
+    <Compile Include="FileStation\Thumb.cs" />
+    <Compile Include="FileStation\Upload.cs" />
+    <Compile Include="FileStation\VirtualFolder.cs" />
     <Compile Include="Syno.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
