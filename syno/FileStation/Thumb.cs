@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Get a thumbnail of a file
     /// </summary>
-    class Thumb
+    public class Thumb
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

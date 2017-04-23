@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Download files/folders
     /// </summary>
-    class Download
+    public class Download
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// List all mount point folders of virtual file system, ex: CIFS or ISO
     /// </summary>
-    class VirtualFolder
+    public class VirtualFolder
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
     }

@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Add a folder to user’s favorites or do operations on user’s favorites.
     /// </summary>
-    class Favorite
+    public class Favorite
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

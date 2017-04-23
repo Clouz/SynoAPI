@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Rename a file/folder
     /// </summary>
-    class Rename
+    public class Rename
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

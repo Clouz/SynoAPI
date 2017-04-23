@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Generate a sharing link to share files/folders with other people and perform operations on sharing links
     /// </summary>
-    class Sharing
+    public class Sharing
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

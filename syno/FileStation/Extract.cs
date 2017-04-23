@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Extract an archive and do operations on an archive
     /// </summary>
-    class Extract
+    public class Extract
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

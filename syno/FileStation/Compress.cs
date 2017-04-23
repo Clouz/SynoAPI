@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Compress files/folders
     /// </summary>
-    class Compress
+    public class Compress
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

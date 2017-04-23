@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Copy/Move files/folders
     /// </summary>
-    class CopyMove
+    public class CopyMove
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

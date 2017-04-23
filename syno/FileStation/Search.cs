@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Search files on given criteria
     /// </summary>
-    class Search
+    public class Search
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

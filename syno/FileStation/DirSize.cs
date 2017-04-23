@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Get the total size of files/folders within folder(s)
     /// </summary>
-    class DirSize
+    public class DirSize
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

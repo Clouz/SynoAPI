@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Delete files/folders
     /// </summary>
-    class Delete
+    public class Delete
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

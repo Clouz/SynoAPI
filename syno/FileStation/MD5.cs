@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Get MD5 of a file
     /// </summary>
-    class MD5
+    public class MD5
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

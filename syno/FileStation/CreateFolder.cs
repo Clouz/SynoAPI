@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Create folder(s)
     /// </summary>
-    class CreateFolder
+    public class CreateFolder
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

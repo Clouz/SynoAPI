@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Get information regarding tasks of file operations which are run as the background process including copy, move, delete, compress and extract tasks or perform operations on these background tasks
     /// </summary>
-    class BackgroundTask
+    public class BackgroundTask
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

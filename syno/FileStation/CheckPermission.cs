@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Check if the file/folder has a permission of a file/folder or not
     /// </summary>
-    class CheckPermission
+    public class CheckPermission
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 

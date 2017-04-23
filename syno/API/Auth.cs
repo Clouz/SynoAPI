@@ -24,11 +24,11 @@ namespace syno.API
         /// <summary>
         /// Performs session login
         /// </summary>
-        /// <param name="session">Login session name</param>
+        /// <param name="session">Login session name [DownloadStation, FileStation]</param>
         /// <param name="format">Returned format of session ID. Following are the two possible options and the default value is cookie. cookie: The login session ID will be set to cookie. sid: The login sid will only be returned as response json data and the cookie will not be set.</param>
         /// <param name="otp_code">This option is not required to log into Download Station sessions currently. However, please note that DSM 4.2 and later includes a 2-step verification option. If enabled, the user requires a verification code to log into DSM sessions.</param>
         /// <returns>Authorized session ID. When the user log in with format=sid, cookie will not be set and each API request should provide a request parameter sid=<sid> along with other parameters.</returns>
-        public static SessionObject GetLogin(Init server, string session = "DownloadStation", string format = "cookie", string otp_code = null)
+        public static SessionObject GetLogin(Init server, string session = "DownloadStation,FileStation", string format = "cookie", string otp_code = null)
         {
             string APIList = $"api=SYNO.API.Auth&version=2&method=login&account={server.Username}&passwd={server.Password}&session={session}&format={format}";
             if (otp_code != null)

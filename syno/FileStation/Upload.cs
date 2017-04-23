@@ -16,7 +16,7 @@ namespace syno.FileStation
     /// <summary>
     /// Upload a file
     /// </summary>
-    class Upload
+    public class Upload
     {
         private static string BasePath { get; } = "/webapi/***.cgi";
 
