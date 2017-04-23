@@ -18,5 +18,6 @@ namespace syno.DownloadStation.RSS
     /// </summary>
     public class Site
     {
+        // TODO
     }
 }

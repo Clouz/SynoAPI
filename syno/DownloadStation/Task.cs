@@ -161,6 +161,119 @@ namespace syno.DownloadStation
             return bool.Parse(results.Values.First());
         }
 
+        /// <summary>
+        /// Delete download instance
+        /// </summary>
+        /// <param name="id">Task IDs to be deleted, separated by ","</param>
+        /// <param name="force_complete">Delete tasks and force to move uncompleted download files to the destination</param>
+        /// <returns></returns>
+        public static List<Task_Delete> Delete(Init server, string id, bool force_complete = false)
+        {
+            Uri fullPath = new UriBuilder(server.BaseAddress)
+            {
+                Path = BasePath,
+                Query = $"api=SYNO.DownloadStation.Task&version=1&method=delete&id={id}&force_complete={force_complete}",
+            }.Uri;
+
+            Console.WriteLine(fullPath);
+
+            string json = Init.Richiesta(fullPath).Result;
+            List<Task_Delete> results;
+
+            try { results = JsonConvert.DeserializeObject<List<Task_Delete>>(JObject.Parse(json)["data"].ToString()); }
+            catch { throw SynoException.FromJson(json, SynoException.ExceptionType.DownloadStation_Task); }
+
+            return  results;
+        }
+
+        /// <summary>
+        /// Pause download instance
+        /// </summary>
+        /// <param name="id">Task IDs to be paused, separated by ","</param>
+        /// <returns></returns>
+        public static List<Task_Delete> Pause(Init server, string id)
+        {
+            Uri fullPath = new UriBuilder(server.BaseAddress)
+            {
+                Path = BasePath,
+                Query = $"api=SYNO.DownloadStation.Task&version=1&method=pause&id={id}",
+            }.Uri;
+
+            Console.WriteLine(fullPath);
+
+            string json = Init.Richiesta(fullPath).Result;
+            List<Task_Delete> results;
+
+            try { results = JsonConvert.DeserializeObject<List<Task_Delete>>(JObject.Parse(json)["data"].ToString()); }
+            catch { throw SynoException.FromJson(json, SynoException.ExceptionType.DownloadStation_Task); }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Resume download instance
+        /// </summary>
+        /// <param name="id">Task IDs to be resumed, separated by ","</param>
+        /// <returns></returns>
+        public static List<Task_Delete> Resume(Init server, string id)
+        {
+            Uri fullPath = new UriBuilder(server.BaseAddress)
+            {
+                Path = BasePath,
+                Query = $"api=SYNO.DownloadStation.Task&version=1&method=resume&id={id}",
+            }.Uri;
+
+            Console.WriteLine(fullPath);
+
+            string json = Init.Richiesta(fullPath).Result;
+            List<Task_Delete> results;
+
+            try { results = JsonConvert.DeserializeObject<List<Task_Delete>>(JObject.Parse(json)["data"].ToString()); }
+            catch { throw SynoException.FromJson(json, SynoException.ExceptionType.DownloadStation_Task); }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Edit download instance
+        /// </summary>
+        /// <param name="id">Task IDs to be set destination, separated by ","</param>
+        /// <param name="destination">Optional. Download destination path starting with a shared folder</param>
+        /// <returns></returns>
+        public static List<Task_Delete> Edit(Init server, string id, string destination = null)
+        {
+            string _destination = "";
+            if (destination != null)
+                _destination = $"&destination={destination}";
+
+            Uri fullPath = new UriBuilder(server.BaseAddress)
+            {
+                Path = BasePath,
+                Query = $"api=SYNO.DownloadStation.Task&version=1&method=edit&id={id}{_destination}",
+            }.Uri;
+
+            Console.WriteLine(fullPath);
+
+            string json = Init.Richiesta(fullPath).Result;
+            List<Task_Delete> results;
+
+            try { results = JsonConvert.DeserializeObject<List<Task_Delete>>(JObject.Parse(json)["data"].ToString()); }
+            catch { throw SynoException.FromJson(json, SynoException.ExceptionType.DownloadStation_Task); }
+
+            return results;
+        }
+    }
+
+    public class Task_Delete
+    {
+        /// <summary>
+        /// Task IDs
+        /// </summary>
+        public string id { get; set; }
+        /// <summary>
+        /// Action result. Error=0 for success
+        /// </summary>
+        public string error { get; set; }
     }
 
     public class Task_DetailObjects

@@ -17,6 +17,6 @@ namespace syno.DownloadStation.RSS
     /// </summary>
     public class Feed
     {
-
+        // TODO
     }
 }
