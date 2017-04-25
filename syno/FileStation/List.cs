@@ -38,6 +38,7 @@ namespace syno.FileStation
             string _direction = "";
             string _onlywritable = "";
             string _additional = "";
+            
 
             if (offset != null) _offset = $"&offset={offset}";
             if (limit != null) _limit = $"&limit={limit}";
@@ -50,6 +51,58 @@ namespace syno.FileStation
             {
                 Path = BasePath,
                 Query = $"api=SYNO.FileStation.List&version=2&method=list_share{_offset}{_limit}{_sort}{_direction}{_onlywritable}{_additional}",
+            }.Uri;
+
+            Console.WriteLine(fullPath);
+
+            string json = Init.Richiesta(fullPath).Result;
+            list_shareObject results;
+
+            try { results = JsonConvert.DeserializeObject<list_shareObject>(JObject.Parse(json)["data"].ToString()); }
+            catch { throw syno.SynoException.FromJson(json, SynoException.ExceptionType.API_Info); }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Enumerate files in a given folder
+        /// </summary>
+        /// <param name="folder_path">A listed folder path started with a shared folder</param>
+        /// <param name="offset">Optional. Specify how many files are skipped before beginning to return listed files.</param>
+        /// <param name="limit">Optional. Number of files requested. 0 indicates to list all files with a given folder.</param>
+        /// <param name="sort">Optional. Specify which file information to sort on.</param>
+        /// <param name="direction">Optional. Specify to sort ascending or to sort descending</param>
+        /// <param name="pattern">Optional. Given glob pattern(s) to find files whose names and extensions match a case-insensitive glob pattern.</param>
+        /// <param name="filetype">Optional. “file”: only enumerate regular files; “dir”: only enumerate folders; “all” enumerate regular files and folders</param>
+        /// <param name="goto_path">Optional. Folder path started with a shared folder. Return all files and sub-folders within folder_path path until goto_path path recursively. </param>
+        /// <param name="additional">Optional. Additional requested file information separated by a comma “, “and around the brackets. When an additional option is requested, responded objects will be provided in the specified additional option. Options include: [real_path: return a real path in volume ; size: return file byte size ; owner: return information about file owner including user name, group name, UID and GID ; time: return information about time including last access time, last modified time, last change time and create time ; perm: return information about file permission]</param>
+        /// <returns></returns>
+        public static list_shareObject list(Init server, string folder_path, int? offset = 0, int? limit = 0, sort_by? sort = sort_by.name, sort_direction? direction = sort_direction.asc, string pattern = null, string filetype = null, string goto_path = null, string additional = null)
+        {
+            // TODO: da finire
+            string _offset = "";
+            string _limit = "";
+            string _sort = "";
+            string _direction = "";
+            string _pattern = "";
+            string _filetype = "";
+            string _goto_path = "";
+            string _additional = "";
+
+
+            if (offset != null) _offset = $"&offset={offset}";
+            if (limit != null) _limit = $"&limit={limit}";
+            if (sort != null) _sort = $"&sort={sort}";
+            if (direction != null) _direction = $"&direction={direction}";
+            if (pattern != null) _pattern = $"&pattern={pattern}";
+            if (goto_path != null) _goto_path = $"&goto_path={goto_path}";
+            if (filetype != null) _filetype = $"&filetype={filetype}";
+            if (additional != null) _additional = $"&additional={additional}";
+
+            Uri fullPath = new UriBuilder(server.BaseAddress)
+            {
+                Path = BasePath,
+                Query = $"api=SYNO.FileStation.List&version=2&method=list_share{_offset}{_limit}{_sort}{_direction}{_pattern}{_goto_path}{_filetype}{_additional}",
             }.Uri;
 
             Console.WriteLine(fullPath);
@@ -224,7 +277,7 @@ namespace syno.FileStation
             /// <summary>
             /// Shared-folder additional object
             /// </summary>
-            public sharedFolderAdditionalObject addittional { get; set; }
+            public sharedFolderAdditionalObject additional { get; set; }
         }
 
         public class list_shareObject

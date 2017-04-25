@@ -38,13 +38,12 @@ namespace Test
             var login = syno.API.Auth.GetLogin(server);
             Console.WriteLine($"Login: {login.sid}");
 
-            var fileStationInfo = syno.FileStation.List.list_share(server);
+            var fileStationInfo = syno.FileStation.List.list_share(server, additional: "real_path,owner");
 
             foreach (var item in fileStationInfo.shares)
             {
-                Console.WriteLine(item.isdir);
-                Console.WriteLine(item.name);
-                Console.WriteLine(item.path);
+                Console.WriteLine($"{item.isdir} - {item.name} - {item.path}");
+                Console.WriteLine($"\t{item.additional.real_path}");
             }
 
             var logout = syno.API.Auth.GetLogout(server);
